@@ -35,7 +35,6 @@ class vending(commands.Cog):
             await new_socket.connect()
             self.sockets[server['name']] = {"socket": new_socket, "map_size": (await new_socket.get_info()).size}
         print("Rust+ connections established.")
-        await self.vendtester.start()
 
     async def autocomplete(self, interaction: discord.Interaction, current: str) -> List[app_commands.Choice[str]]:
         choices = []
@@ -104,7 +103,8 @@ class vending(commands.Cog):
         embed.set_footer(
             text="Discord bot created by Gnomeslayer, using Rust+ wrapper created by Ollie.")
         await interaction.followup.send(embed=embed)
-        
-        
+
+    
+
 async def setup(client):
     await client.add_cog(vending(client))
