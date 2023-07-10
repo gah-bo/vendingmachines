@@ -1,0 +1,21 @@
+{
+    "tokens": {
+        "discord_token": ".."
+    },
+    "additional": {
+        "prefix": "-",
+        "application_id": 1234
+    },
+    "cogs": {
+        "color": "0x9b59b6"
+    },
+    "servers": [
+        {
+            "server_ip": "95.214.180.69",
+            "server_port": "1234",
+            "rust_plus_steamid": 1234,
+            "rust_plus_player_token": -1234,
+            "name": "Polar | Solo Only | Noob Friendly - JUST WIPED!"
+        }
+    ]
+}
