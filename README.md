@@ -1,4 +1,4 @@
-# Some Assembly Required
+# Some Setup Required
 
 This README provides instructions on setting up and running a Discord bot with Rust+ connection. Follow the steps below to get started.
 
