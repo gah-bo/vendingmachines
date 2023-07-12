@@ -21,6 +21,7 @@ class vending(commands.Cog):
     count = 1
     for server in config['servers']:
         servername = server['name']
+        
         server_names.append(app_commands.Choice(
             name=f"{servername}", value=count))
         count += 1
@@ -30,8 +31,11 @@ class vending(commands.Cog):
         print("Establishing Rust+ connections..")
         servers = self.config['servers']
         for server in servers:
-            new_socket = RustSocket(server['server_ip'], server['server_port'],
-                                    server['rust_plus_steamid'], server['rust_plus_player_token'])
+            print("\n=\n")
+            print("Attempting to connect to server: ", server['name'])
+            print("\n=\n")
+            new_socket = RustSocket(server['ip'], int(server['port']),
+                                    int(server['playerId']), int(server['playerToken']))
             await new_socket.connect()
             self.sockets[server['name']] = {"socket": new_socket, "map_size": (await new_socket.get_info()).size}
         print("Rust+ connections established.")
@@ -103,8 +107,7 @@ class vending(commands.Cog):
         embed.set_footer(
             text="Discord bot created by Gnomeslayer, using Rust+ wrapper created by Ollie.")
         await interaction.followup.send(embed=embed)
-
-    
-
+        
+        
 async def setup(client):
     await client.add_cog(vending(client))
