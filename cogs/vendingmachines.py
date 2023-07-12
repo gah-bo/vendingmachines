@@ -45,12 +45,16 @@ class vending(commands.Cog):
         for item in self.items_list:
             choices.append(self.items_list[item]['name'])
         if current:
-            return [
-                app_commands.Choice(name=choice, value=choice)
-                for choice in choices if current.lower() in choice.lower()
-            ]
+            choicelist = []
+            for choice in choices:
+                if current.lower() in choice.lower():
+                    choicelist.append(choice)
+                if len(choicelist) > 20:
+                    break
+            return [app_commands.Choice(name=c, value=c) for c in choicelist]
         else:
             default = choices[:25]
+            default = ["Start typing an item name!"]
             return [app_commands.Choice(name=d, value=d) for d in default]
 
     @ app_commands.command(name="vendingsearch", description="Searches The Rust Server's Vending Machine")
